@@ -1,12 +1,4 @@
 #!/bin/bash
-set -e
- 
-echo "Running ApplicationStart hook..."
- 
-# cp -R /home/ubuntu/images/* /var/www/html/storage/app/public/
- 
-# Enable and start Apache
-sudo systemctl enable apache2
-sudo systemctl restart apache2
- 
-echo "ApplicationStart completed."
+echo "Starting FastAPI app..."
+source venv/bin/activate
+uvicorn app.main:app --host 0.0.0.0 --port 8000
