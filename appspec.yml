@@ -1,5 +1,6 @@
 version: 0.0
 os: linux
+
 files:
   - source: /
     destination: /home/ubuntu/fastapi-app
@@ -16,6 +17,14 @@ permissions:
       - directory
 
 hooks:
+  BeforeInstall:
+    - location: devops/script/chmod_scripts.sh
+      timeout: 60
+      runas: ubuntu
+    - location: devops/script/install_dependencies.sh
+      timeout: 300
+      runas: ubuntu
+
   ApplicationStart:
     - location: devops/script/start_application.sh
       timeout: 300
