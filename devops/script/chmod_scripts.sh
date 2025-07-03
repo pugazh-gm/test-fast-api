@@ -1,6 +1,5 @@
 #!/bin/bash
 echo "Setting script permissions..."
 
-cd /home/ubuntu/fastapi-app/devops/script
-chmod +x install_dependencies.sh
-chmod +x start_application.sh
+chmod +x devops/script/install_dependencies.sh
+chmod +x devops/script/start_application.sh
