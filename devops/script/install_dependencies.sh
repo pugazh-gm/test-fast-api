@@ -1,19 +1,23 @@
 #!/bin/bash
 echo "Installing dependencies..."
 
-# Update package manager
-sudo apt-get update
-
-# Install required system packages
-sudo apt-get install -y python3-pip python3-dev
-
-# Just in case: install pip3 if it's missing
-if ! command -v pip3 &> /dev/null
-then
-  echo "Installing pip3..."
-  curl -sS https://bootstrap.pypa.io/get-pip.py | sudo python3
-fi
-
-# Install Python dependencies globally
 cd /home/ubuntu/fastapi-app
-sudo pip3 install -r requirements.txt
+
+# Install venv if missing
+sudo apt-get update
+sudo apt-get install -y python3-venv
+
+# Create virtual environment if it doesn't exist
+python3 -m venv venv
+
+# Activate the virtual environment
+source venv/bin/activate
+
+# Upgrade pip inside venv
+pip install --upgrade pip
+
+# Install requirements inside the venv
+pip install -r requirements.txt
+
+# Done
+echo "Dependencies installed inside virtual environment."
